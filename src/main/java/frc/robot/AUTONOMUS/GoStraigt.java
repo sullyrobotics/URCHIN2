@@ -9,20 +9,7 @@ public class GoStraigt extends Command {
     private Timer timer;
     private double drive_seconds = 3.25;
 
-      /**
-     * This auto will have the robot drive forwards
-     * 
-     * There are many ways to write autos, this form will work well for most simple
-     * auto routines. For more advanced routines you may want a different structure and 
-     * to use more sensors.
-     * 
-     * Here we use a single timer gate, after the robot has finished driving for the first 3.25 
-     * seconds it will stop moving. You may wish for the robot to move more or less depending on
-     * your use case.
-     * 
-     * 
-     * @param drive
-     */
+      
     public GoStraigt(Drive drive)
     {
         m_drive = drive;

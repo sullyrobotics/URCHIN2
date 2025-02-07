@@ -9,9 +9,6 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.RollerConstants;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-
 public class Roller extends SubsystemBase {
 
  private final SparkMax rollerMotor;
