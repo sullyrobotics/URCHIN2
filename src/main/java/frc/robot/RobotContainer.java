@@ -4,19 +4,19 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.AUTONOMUS.GoStraigt;
 import frc.robot.AUTONOMUS.CoralOut;
-import frc.robot.commands.ClimberDownCommand;
-import frc.robot.commands.ClimberUpCommand;
-import frc.robot.commands.CoralOutCommand;
-import frc.robot.commands.CoralStackCommand;
+import frc.robot.commands.AlgieINCom;
+import frc.robot.commands.AlgieOUTCom;
+import frc.robot.commands.ArmDOWNCom;
+import frc.robot.commands.ArmUPCom;
+import frc.robot.commands.ClimbDOWNCom;
+import frc.robot.commands.ClimbUPCom;
+import frc.robot.commands.CoralOutCom;
+import frc.robot.commands.CoralStackCom;
 import frc.robot.commands.DriveCom;
-import frc.robot.commands.DriveCommand;
-import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.ARM;
 import frc.robot.subsystems.CLimb;
-import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Roller;
-import frc.robot.subsystems.RollerSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -49,15 +49,7 @@ public class RobotContainer {
     SmartDashboard.putData(m_chooser);
   }
 
-  /**
-   * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-   * predicate, or via the named factories in {@link
-   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-   * joysticks}.
-   */
+  
   private void configureBindings() {
 
     m_drive.setDefaultCommand(new DriveCom(m_drive,
@@ -72,22 +64,22 @@ public class RobotContainer {
         () -> true));
 
     
-    m_operatorController.rightBumper().whileTrue(new AlgieInCommand(m_roller));
+    m_operatorController.rightBumper().whileTrue(new AlgieINCom(m_roller));
     
     
-    m_operatorController.rightTrigger(.2).whileTrue(new AlgieOutCommand(m_roller));
+    m_operatorController.rightTrigger(.2).whileTrue(new AlgieOUTCom(m_roller));
 
 
-    m_operatorController.leftBumper().whileTrue(new ArmUpCommand(m_arm));
-    m_operatorController.leftTrigger(.2).whileTrue(new ArmDownCommand(m_arm));
-
-    
-    m_operatorController.x().whileTrue(new CoralOutCommand(m_roller));
-    m_operatorController.y().whileTrue(new CoralStackCommand(m_roller));
+    m_operatorController.leftBumper().whileTrue(new ArmUPCom(m_arm));
+    m_operatorController.leftTrigger(.2).whileTrue(new ArmDOWNCom(m_arm));
 
     
-    m_operatorController.pov(0).whileTrue(new ClimberUpCommand(m_climber));
-    m_operatorController.pov(180).whileTrue(new ClimberDownCommand(m_climber));
+    m_operatorController.x().whileTrue(new CoralOutCom(m_roller));
+    m_operatorController.y().whileTrue(new CoralStackCom(m_roller));
+
+    
+    m_operatorController.pov(0).whileTrue(new ClimbUPCom(m_climber));
+    m_operatorController.pov(180).whileTrue(new ClimbDOWNCom(m_climber));
   }
 
     public Command getAutonomousCommand() {

@@ -35,6 +35,20 @@ public final class Constants {
     public static final double ROB_Vol = 12;
     public static final double OUTCRL = -.4;
     public static final double INCRL = -0.8;
+    public static final double INAGL = -0.8;
+    public static final double OUTAGL = 0.4;
+  }
+
+  
+  
+  public static final class ArmConstants {
+    public static final int M_ARM = 6;
+    public static final int CurrentLimit = 60;
+    public static final double ROB_Vol = 10;
+    public static final double ARM_SPEED_DOWN = 0.4;
+    public static final double ARM_SPEED_UP = -0.4;
+    public static final double ARM_HOLD_DOWN = 0.1;
+    public static final double ARM_HOLD_UP = -0.15;
   }
 
   
