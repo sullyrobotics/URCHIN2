@@ -14,23 +14,14 @@ public class CLimb extends SubsystemBase {
 
     private final SparkMax climbMotor;
 
-    /**
-     * This subsytem that controls the climber.
-     */
+   
     public CLimb () {
-
-    // Set up the climb motor as a brushless motor
+        
     climbMotor = new SparkMax(ClimberConstants.M_CL, MotorType.kBrushless);
 
-    // Set can timeout. Because this project only sets parameters once on
-    // construction, the timeout can be long without blocking robot operation. Code
-    // which sets or gets parameters during operation may need a shorter timeout.
     climbMotor.setCANTimeout(250);
 
-    // Create and apply configuration for climb motor. Voltage compensation helps
-    // the climb behave the same as the battery
-    // voltage dips. The current limit helps prevent breaker trips or burning out
-    // the motor in the event the climb stalls.
+    
     SparkMaxConfig climbConfig = new SparkMaxConfig();
     climbConfig.voltageCompensation(ClimberConstants.ROB_Vol);
     climbConfig.smartCurrentLimit(ClimberConstants.CurrentLimit);
@@ -42,12 +33,6 @@ public class CLimb extends SubsystemBase {
     public void periodic() {
     }
 
-    /**
-     * Use to run the climber, can be set to run from 100% to -100%.
-     * Keep in mind that the direction changes based on which way the winch is wound.
-     * 
-     * @param speed motor speed from -1.0 to 1, with 0 stopping it
-     */
     public void runClimber(double speed){
         climbMotor.set(speed);
     }

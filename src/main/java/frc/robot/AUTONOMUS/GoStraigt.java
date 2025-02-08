@@ -21,12 +21,10 @@ public class GoStraigt extends Command {
 
     @Override
   public void initialize() {
-    // start timer, uses restart to clear the timer as well in case this command has
-    // already been run before
+    
     timer.restart();
   }
 
-  // Runs every cycle while the command is scheduled (~50 times per second), here we will just drive forwards
   @Override
   public void execute() {
     // drive at 30% speed
@@ -36,7 +34,7 @@ public class GoStraigt extends Command {
     }
   }
 
-  // Runs each time the command ends via isFinished or being interrupted.
+  
   @Override
   public void end(boolean isInterrupted) {
     // stop drive motors
@@ -44,12 +42,9 @@ public class GoStraigt extends Command {
     timer.stop();
   }
 
-  // Runs every cycle while the command is scheduled to check if the command is
-  // finished
+  
   @Override
   public boolean isFinished() {
-    // check if timer exceeds seconds, when it has this will return true indicating
-    // this command is finished
     return timer.get() >= drive_seconds;
   }
 }
